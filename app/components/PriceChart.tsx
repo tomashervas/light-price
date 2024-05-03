@@ -22,7 +22,7 @@ const PriceChart = ({data}: PriceChartProps) => {
                     </XAxis>
                     <YAxis fontSize={13} label={{ value: "€/kWh", angle: -90, position: "insideLeft" }}/>
                     {/* <CartesianGrid strokeDasharray="2 2" /> */}
-                    <Tooltip />
+                    <Tooltip label={"Horas"} wrapperStyle={{ fontSize: 12, color: "#5b21b6", backgroundColor: "black" }} />
                     <Area type="monotone" dataKey="price" stroke="#5b21b6" fillOpacity={1} fill="url(#colorUv)" />
                 </AreaChart>
             </ResponsiveContainer>

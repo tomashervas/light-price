@@ -9,9 +9,9 @@ const PriceBars = ({data}: PriceBarsProps) => {
         <div>
             {data.map((d:any)=>{
                 return (
-                    <div className="flex items-center my-1">
+                    <div key={d.time} className="flex items-center my-1">
                         <div className="w-8 text-slate-300">{d.time}</div>
-                        <div key={d.time} className="text-sm rounded-md bg-violet-800 px-2" style={{width:`${d.price * 1500}px`}}> {d.price} </div>
+                        <div  className="text-sm rounded-md bg-violet-800 px-2" style={{width:`${d.price * 1500}px`}}> {d.price} </div>
                     </div>
                 )
             })}
