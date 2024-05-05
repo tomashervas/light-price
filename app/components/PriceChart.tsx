@@ -6,7 +6,19 @@ interface PriceChartProps {
     data: any
 }
 
+function CustomTooltip({ payload, label, active } : any) {
+    if (active) {
+      return (
+        <div className="bg-gray-800/40 p-3 rounded-lg">
+          <p className="text-sm">{`${label}h | ${payload[0].value} `}<span className="text-xs">€/kWh</span></p>
+        </div>
+      );
+    }
+}
+
 const PriceChart = ({data}: PriceChartProps) => {
+    const maxPrice = Math.max(...data.map((d:any) => d.price))
+    const maxYaxis = maxPrice > .25 ? maxPrice : .25
     return (
             <ResponsiveContainer width={"100%"} height={300} >
                 <AreaChart data={data}
@@ -20,9 +32,10 @@ const PriceChart = ({data}: PriceChartProps) => {
                     <XAxis dataKey="time" fontSize={13}>
                         <Label value="Horas" position="top" />
                     </XAxis>
-                    <YAxis fontSize={13} label={{ value: "€/kWh", angle: -90, position: "insideLeft" }}/>
-                    {/* <CartesianGrid strokeDasharray="2 2" /> */}
-                    <Tooltip label={"Horas"} wrapperStyle={{ fontSize: 12, color: "#5b21b6", backgroundColor: "black" }} />
+                    <YAxis fontSize={13} label={{ value: "€/kWh", angle: -90, position: "insideLeft" }} domain={[0, maxYaxis]}/>
+                    {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                    <Tooltip content={<CustomTooltip />} />
+                    {/* <Tooltip label={"Horas"} wrapperStyle={{ fontSize: 12, color: "#5b21b6", backgroundColor: "black" }} /> */}
                     <Area type="monotone" dataKey="price" stroke="#5b21b6" fillOpacity={1} fill="url(#colorUv)" />
                 </AreaChart>
             </ResponsiveContainer>
