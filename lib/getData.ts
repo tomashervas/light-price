@@ -12,7 +12,7 @@ export const getPriceToday = async (isToday: boolean = true, peninsula: boolean 
     if (!data.included) return []
     const prices = data.included[0].attributes.values
     const pricesTime = prices.map((p: any) => {
-      const time = new Date(p.datetime).getHours()
+      const time = new Date(p.datetime).getHours() + Number(process.env.ADJUST_UTC!)
       const price = (p.value / 1000).toFixed(3)
       return { time, price }
     })

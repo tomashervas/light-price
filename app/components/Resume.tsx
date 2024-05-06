@@ -5,7 +5,7 @@ interface ResumeProps {
 
 
 const Resume = ( {data, isToday}: ResumeProps) => {
-    const hour = new Date().getHours()
+    const hour = new Date().getHours() + +process.env.ADJUST_UTC!
     const actualPrice = data.find( (d:any)=>+d.time===hour)
     const minPrice = Math.min(...data.map((d:any) => d.price))
     const maxPrice = Math.max(...data.map((d:any) => d.price))
