@@ -6,6 +6,7 @@ import { assert } from "console"
 import Resume from "../components/Resume"
 import { format } from 'date-fns';
 import {es} from 'date-fns/locale';
+import Footer from "../components/Footer"
 
 const TomorrowPage = async () => {
   const pricesTomorrow = await getPriceToday(false, true)
@@ -29,8 +30,9 @@ const TomorrowPage = async () => {
               <PriceChart data={pricesTomorrow}  />
               <PriceBars data={pricesTomorrow} />
           </div> :
-              <h1 className="text-xl p-12 mt-20">No hay datos de mañana todavía, se publican a partir de las 20:30</h1>
+              <h1 className="text-xl p-12 flex-1 mt-20">No hay datos de mañana todavía, se publican a partir de las 20:30</h1>
       }
+      <Footer />
     </main>
   )
 }

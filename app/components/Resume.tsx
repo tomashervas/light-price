@@ -13,9 +13,8 @@ const Resume = ( {data, isToday}: ResumeProps) => {
     const minTime  = data.find((d: any)=>+d.price===minPrice)
     const minDayTime = data.find((d:any)=>+d.price===minDayPrice)
     const maxTime  = data.find((d:any)=>+d.price===maxPrice)
-    console.log(hour)
     return (
-    <div className="p-4 mx-4 mb-8 border border-slate-500 rounded-lg">
+    <div className="p-4 mx-4 mb-8 border border-slate-500 rounded-lg shadow-md shadow-violet-900">
         { isToday && <p>Precio actual: {actualPrice.price} <span className="text-sm">€/kWh</span></p>}
         <p>Hora más barata: {minTime.time}h | {minTime.price} <span className="text-sm">€/kWh</span> </p>
         <p>Hora diurna más barata: {minDayTime.time}h | {minDayTime.price} <span className="text-sm">€/kWh</span></p>
