@@ -1,3 +1,4 @@
+"use client"
 interface ResumeProps {
     data: any,
     isToday: boolean
@@ -5,7 +6,7 @@ interface ResumeProps {
 
 
 const Resume = ( {data, isToday}: ResumeProps) => {
-    const hour = new Date().getHours() + +process.env.ADJUST_UTC!
+    const hour = new Date().getHours()
     console.log(hour)
     const actualPrice = data.find( (d:any)=>+d.time===hour)
     const minPrice = Math.min(...data.map((d:any) => d.price))
@@ -16,7 +17,7 @@ const Resume = ( {data, isToday}: ResumeProps) => {
     const maxTime  = data.find((d:any)=>+d.price===maxPrice)
     return (
     <div className="p-4 mx-4 mb-8 border border-slate-500 rounded-lg shadow-md shadow-violet-900">
-        { isToday && <p>Precio actual: {actualPrice.price} <span className="text-sm">€/kWh</span></p>}
+        { isToday && <p>Precio actual: {actualPrice.time}h | {actualPrice.price} <span className="text-sm">€/kWh</span></p>}
         <p>Hora más barata: {minTime.time}h | {minTime.price} <span className="text-sm">€/kWh</span> </p>
         <p>Hora diurna más barata: {minDayTime.time}h | {minDayTime.price} <span className="text-sm">€/kWh</span></p>
         <p>Hora más cara: {maxTime.time}h | {maxTime.price} <span className="text-sm">€/kWh</span></p>

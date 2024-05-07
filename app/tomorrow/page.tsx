@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 import {es} from 'date-fns/locale';
 import Footer from "../components/Footer"
 
+export const dynamic = 'force-dynamic'
+
 const TomorrowPage = async () => {
   const pricesTomorrow = await getPriceToday(false, true)
   const date = new Date()
